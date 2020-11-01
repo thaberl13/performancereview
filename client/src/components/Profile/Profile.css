@@ -13,6 +13,7 @@
 
 }
 
+
 .employee-select{
   cursor: pointer;
   border-radius: 5px;
@@ -25,8 +26,8 @@
 .employee-profile-form{
   background-color: #00B9F5;
   border-radius: 25px;
-  height: 700px;
-  width: 600px;
+  height: 930px;
+  width: 725px;
   box-shadow: 0 4px 8px 0 rgb(2, 155, 206), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-bottom: 6px solid rgb(2, 106, 141);
 }
@@ -41,4 +42,25 @@
   margin-top: 10px;
   border-radius: 10px;
   border-color: black;
+}
+.select-employee-submit{
+  margin-left: 340px;
+  cursor: pointer;
+  background-color:white;
+  height: 30px;
+  width: 50px;
+  border: 1px; 
+  padding: 13px 0 13px 0;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border-color: black;
+}
+#employee-review{
+  background-color: rgb(177, 221, 236);
+  border-style: solid;
+  border-color: white;
+  border-radius: 4px;
+  text-align: center;
+  margin: 10px;
 }

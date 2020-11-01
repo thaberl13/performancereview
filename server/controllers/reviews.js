@@ -7,17 +7,16 @@ router.get("/test", async (req, res) => {
   res.send("reviews working");
 });
 
-
 //add a new employee review to reviews table
 router.post("/", async (req, res) => {
   try {
     //find employee's id from employee table
-    const first_name = req.body.first_name;
     const last_name = req.body.last_name;
+    // const last_name = req.body.last_name;
     const employee_id = await db
       .select("id")
       .table("employees")
-      .where({ first_name, last_name });
+      .where({ last_name });
     //insert review into review table
     await db
       .insert({
