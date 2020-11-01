@@ -38,14 +38,14 @@ router.post("/", async (req, res) => {
 });
 
 //DELETE an employee from the database
-router.delete("/", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
-    //if employee exists, select from database by last name and delete from employee table
-    const last_name = req.body.last_name;
+    //if employee exists, select from database by id and delete from employee table
+    const id = req.params.id;
     const employee = await db
       .select("*")
       .table("employees")
-      .where({ last_name })
+      .where({ id })
       .del();
     //send 202 status if accepted
     return res.sendStatus(202);

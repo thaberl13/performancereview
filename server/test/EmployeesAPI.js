@@ -4,7 +4,6 @@ chai.use(chaiHttp);
 const { setupServer } = require("../src/server.js");
 chai.should();
 const sinon = require("sinon");
-
 const server = setupServer();
 
 describe("Employees API server", () => {
@@ -18,50 +17,32 @@ describe("Employees API server", () => {
     res.should.have.status(200);
   });
 
-  // it("should return n amount of pokemon", async () => {
-  //   const res = await request.get("/api/pokemon");
-  //   res.should.be.a("object");
-  // });
+  it("should be able to add a new employee", async () => {
+    const newEmployee = {
+      first_name: "Test",
+      last_name: "Test",
+      is_admin: false,
+    };
+    const res = await request.post("/api/employees").send(newEmployee);
+    res.should.have.status(200)
+  });
 
-  // it("should return pokemon of given ID", async () => {
-  //   const res = await request.get("/api/pokemon");
-  //   res.should.be.a("object");
-  // });
+  it("should delete a given employee from database", async () => {
+    const res = await request.delete("/api/employees/56");
+    res.should.have.status(202)
+  })
 
-  // it("should change the pokemon's data", async () => {
-  //   const newName = { name: "tanner" };
-  //   const res = await request.patch("/api/pokemon/Bulbasaur").send(newName);
-  //   pokeData.pokemon[0].name.should.equal("tanner");
-  // });
+  it("should change an employee's first name", async () => {
+    const newName = { first_name: "Tanner" };
+    const res = await request.patch("/api/employees/45").send(newName);
+    res.should.have.status(200);
+  });
 
-  // it("should delete a given pokemon from data", async () => {
-  //   const res = await request.delete("/api/pokemon/001");
-  //   pokeData.pokemon[0].name.should.equal("Ivysaur");
-  // });
 
-  // it("should retrieve a pokemon's evolutions", async () => {
-  //   const res = await request.get("/api/pokemon/001/evolutions");
-  //   pokeData.pokemon[0].evolutions[0].name.should.equal("Venusaur");
-  // });
-
-  // it("should retrieve a pokemon's PREVIOUS evolutions", async () => {
-  //   const res = await request.get("/api/pokemon/:idOrName/evolutions/previous");
-  //   pokeData.pokemon[1]["Previous evolution(s)"][0].id.should.equal(1);
-  // });
-
-  // it("should retrieve a pokemon's types", async () => {
-  //   const res = await request.get("/api/types");
-  //   res.should.be.a("object");
-  // });
-
-  // it("should add a new pokemon type", async () => {
-  //   const newType = { type: "Rocky" };
-  //   const res = await request.post("/api/types").send(newType);
-  //   pokeData.types.length.should.equal(18);
-  // });
-
-  // it("should delete given type", async () => {
-  //   const res = await request.delete("/api/types/Grass");
-  //   pokeData.types[0].should.equal("Poison");
-  // });
+  it("should change an employee's admin status", async () => {
+    const is_admin = { is_admin: "true" };
+    const res = await request.patch("/api/employees/45").send(is_admin);
+    res.should.have.status(200);
+  });
+    
 });
