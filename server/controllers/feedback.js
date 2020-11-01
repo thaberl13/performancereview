@@ -7,17 +7,19 @@ router.get("/test", async (req, res) => {
   res.send("feedback working");
 });
 
-//post feedback to database
+//POST new feedback into feedback table
 router.post("/", async (req, res) => {
   try {
-    //insert new employees info into table
+    //insert new feedback into feedback table
     await db
       .insert({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        is_admin: req.body.is_admin,
+        employee_id: req.body.employee_id,
+        review_id: req.body.review_id,
+        comment: req.body.comment,
+        date: new Date()
       })
-      .table("employees");
+      .table("feedback");
+      //send 2020 if accepted
     res.sendStatus(200);
   } catch (err) {
     //send 404 status if error

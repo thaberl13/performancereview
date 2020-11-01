@@ -1,5 +1,7 @@
 const express = require("express");
+//Express routes
 const router = express.Router();
+//Connection to database through knex
 const db = require("../src/knex.js");
 
 //test connection to database
@@ -7,7 +9,7 @@ router.get("/test", async (req, res) => {
   res.send("working");
 });
 
-//endpoint to GET all employees in employees table
+//GET all employees in employees table
 router.get("/", async (req, res) => {
   //query to select all employees in database
   const allEmployees = await db.select("*").table("employees");
@@ -17,7 +19,7 @@ router.get("/", async (req, res) => {
   res.sendStatus(200);
 });
 
-//add a new employee to the employee table
+//POST a new employee to the employee table
 router.post("/", async (req, res) => {
   try {
     //insert new employees info into table
@@ -35,7 +37,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-//delete an employee from the database
+//DELETE an employee from the database
 router.delete("/", async (req, res) => {
   try {
     //if employee exists, select from database by last name and delete from employee table
@@ -53,7 +55,7 @@ router.delete("/", async (req, res) => {
   }
 });
 
-//update employees info using patch method
+//UPDATE employees info using patch method
 router.patch("/:id", async (req, res) => {
   let id = req.params.id;
   //set variables for different employee info to be updated

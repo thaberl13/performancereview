@@ -1,19 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import { EmployeesContext } from "../useContext/EmployeesContext.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUserCircle,
-  faArrowCircleLeft,
-  faCheck
-} from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle, faCheck } from "@fortawesome/free-solid-svg-icons";
 import "./Profile.css";
 import axios from "axios";
 
 export default function Profile() {
   const { employees, setEmployees } = useContext(EmployeesContext);
-  // const [employeesToReview, setEmployeesToReview] = useState([]);
   const [employeeReview, setEmployeeReview] = useState("");
   const [selectedEmployee, setSelectedEmployee] = useState("");
+  const [employeeReviewId, setEmployeeReviewId] = useState("");
 
   useEffect(() => {
     async function fetchEmployees() {
@@ -30,12 +26,9 @@ export default function Profile() {
       `http://localhost:4000/api/reviews/${selectedEmployee}`
     );
     console.log(res.data[0].text);
-    setEmployeeReview(res.data[0].text);
+    setEmployeeReview(res.data[0]);
+    setEmployeeReviewId(res.data[0].id);
     console.log(employeeReview);
-  }
-
-  async function postNewFeedback() {
-    console.log('yes')
   }
 
   return (
@@ -51,47 +44,71 @@ export default function Profile() {
         />
         <h2>Performance Review</h2>
         <h3>Performance Review Feedback:</h3>
-        <form>
-        <select
-          placeholder="select"
-          onChange={(e) => {
-            console.log(e.target.value)
-            setSelectedEmployee(e.target.value);
-
+        <form
+          onSubmit={async (e) => {
+            await axios.post("", {
+              employee_id: e.target.employee.value,
+              review_id: employeeReviewId,
+              comment: e.target.comment.value,
+            });
           }}
-          className="employee-select"
         >
-          {employees ? (
-            employees.map((employee, index) => {
-              return (
-                <option value={employee.id}>
-                  {employee.first_name} {employee.last_name}
-                </option>
-              );
-            })
+          <select
+            name="employee"
+            placeholder="select"
+            onChange={(e) => {
+              console.log(e.target.value);
+              setSelectedEmployee(e.target.value);
+            }}
+            className="employee-select"
+          >
+            {employees ? (
+              employees.map((employee, index) => {
+                return (
+                  <option name="employee" value={employee.id}>
+                    {employee.first_name} {employee.last_name}
+                  </option>
+                );
+              })
+            ) : (
+              <option value={"Select Employee"}>{"Select Employee"}</option>
+            )}
+            <input type="submit" />
+          </select>
+          <div
+            className="select-employee-submit"
+            type="button"
+            value="Select"
+            onClick={reviewFetch}
+          >
+            <FontAwesomeIcon
+              className="clip-board"
+              icon={faCheck}
+              size="lg"
+              color="darkslategrey"
+            />
+          </div>
+          {employeeReview ? (
+            <p
+              name="employee_review"
+              value={employeeReview}
+              id="employee-review"
+            >
+              {employeeReview.text}
+            </p>
           ) : (
-            <option value={"Select Employee"}>{"Select Employee"}</option>
+            <h4>Review</h4>
           )}
-          <input type="submit" />
-        </select>
-        <div className="select-employee-submit" type="button" value="Select" onClick={reviewFetch} >
-        <FontAwesomeIcon
-            className="clip-board"
-            icon={faCheck}
-            size="lg"
-            color="darkslategrey"
-          />
-        </div>
-          {employeeReview ? <p id="employee-review">{employeeReview}</p>  : <h4>Review</h4>}
-        <textarea
-          rows="10"
-          cols="60"
-          placeholder="Please leave feedback"
-        ></textarea>
-        <button className="employee-profile-submit" type="submit" onClick={postNewFeedback}>
-          Submit
-        </button>
-      </form>
+          <textarea
+            name="comment"
+            rows="10"
+            cols="60"
+            placeholder="Please leave feedback"
+          ></textarea>
+          <button className="employee-profile-submit" type="submit">
+            Submit
+          </button>
+        </form>
       </div>
     </div>
   );

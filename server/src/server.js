@@ -1,12 +1,11 @@
 const express = require('express')
 const app = express();
 const cors = require('cors');
-
-
 const employeesAPI = require("../controllers/employees");
 const reviewsAPI = require("../controllers/reviews");
 const feedbackAPI = require("../controllers/feedback");
 
+//defining api routes
 const setupServer = () => {
   app.use(express.json());
   app.use(cors())

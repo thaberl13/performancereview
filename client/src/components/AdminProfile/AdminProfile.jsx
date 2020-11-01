@@ -23,7 +23,6 @@ export default function AdminProfile() {
     fetchEmployees();
   }, []);
 
-  async function reviewSubmitHandler() {}
 
   return (
     <div id="administrator-performance-form">

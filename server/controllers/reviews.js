@@ -7,7 +7,7 @@ router.get("/test", async (req, res) => {
   res.send("reviews working");
 });
 
-//add a new employee review to reviews table
+//POST a new employee review to reviews table
 router.post("/", async (req, res) => {
   try {
     //find employee's id from employee table
@@ -31,19 +31,11 @@ router.post("/", async (req, res) => {
   }
 });
 
-//get employees review
+//GET employees review
 router.get("/:id", async (req, res) => {
-  // get employees id from employee table
-  // const first_name = req.params.first_name;
-  // const last_name = req.body.last_name;
-  // const employee = await db
-  //   .select("id")
-  //   .table("employees")
-  //   .where({ first_name, last_name });
   const employee_id = req.params.id;
-
   //select employees reviews from table
-  let reviews = await db.select("text").table("reviews").where({ employee_id });
+  let reviews = await db.select("text", "id").table("reviews").where({ employee_id });
   res.send(reviews);
   res.sendStatus(200);
 });
