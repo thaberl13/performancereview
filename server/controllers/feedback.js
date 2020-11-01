@@ -4,14 +4,14 @@ const db = require("../src/knex.js");
 
 //test connection to database
 router.get("/test", async (req, res) => {
-  res.send("feedback working");
+ return res.send("feedback working");
 });
 
 //POST new feedback into feedback table
 router.post("/", async (req, res) => {
   try {
     //insert new feedback into feedback table
-    await db
+   await db
       .insert({
         employee_id: req.body.employee_id,
         review_id: req.body.review_id,
@@ -20,10 +20,10 @@ router.post("/", async (req, res) => {
       })
       .table("feedback");
       //send 2020 if accepted
-    res.sendStatus(200);
+    return res.sendStatus(200);
   } catch (err) {
     //send 404 status if error
-    res.sendStatus(404);
+   res.sendStatus(404);
   }
 });
 

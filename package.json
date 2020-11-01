@@ -6,13 +6,17 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "knex": "^0.21.8",
+    "mocha": "^8.2.0",
     "pg": "^8.4.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.0",
+    "sinon": "^9.2.1",
     "web-vitals": "^0.2.4"
   },
   "devDependencies": {
@@ -21,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "mocha server/test/EmployeesAPI.js",
     "eject": "react-scripts eject",
     "dev": "nodemon ./server/src/index.js",
     "makeMigration": "knex migrate:make",

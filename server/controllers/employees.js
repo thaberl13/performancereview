@@ -11,12 +11,12 @@ router.get("/test", async (req, res) => {
 
 //GET all employees in employees table
 router.get("/", async (req, res) => {
+  console.log("yes");
   //query to select all employees in database
   const allEmployees = await db.select("*").table("employees");
 
   //send all employees as response
-  res.send(allEmployees);
-  res.sendStatus(200);
+  return res.send(allEmployees);
 });
 
 //POST a new employee to the employee table
@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
         is_admin: req.body.is_admin,
       })
       .table("employees");
-    res.sendStatus(200);
+    return res.sendStatus(200);
   } catch (err) {
     //send 404 status if error
     res.sendStatus(404);
@@ -48,7 +48,7 @@ router.delete("/", async (req, res) => {
       .where({ last_name })
       .del();
     //send 202 status if accepted
-    res.sendStatus(202);
+    return res.sendStatus(202);
   } catch (err) {
     //send 404 status if user is not found
     res.sendStatus(404);
@@ -72,9 +72,9 @@ router.patch("/:id", async (req, res) => {
         .table("employees")
         .where({ id })
         .update({ is_admin: req.body.is_admin });
-      res.sendStatus(200);
+      return res.sendStatus(200);
     } catch (err) {
-      res.sendStatus(404);
+      return res.sendStatus(404);
     }
   }
   //if first_name needs to be updated, select by last name and update first_name
@@ -85,9 +85,9 @@ router.patch("/:id", async (req, res) => {
         .table("employees")
         .where({ id })
         .update({ first_name: req.body.first_name });
-      res.sendStatus(200);
+      return res.sendStatus(200);
     } catch (err) {
-      res.sendStatus(404);
+      return res.sendStatus(404);
     }
   }
   //if last name needs to be updated, select by last_name and then update
@@ -98,7 +98,7 @@ router.patch("/:id", async (req, res) => {
         .table("employees")
         .where({ id })
         .update({ last_name: req.body.updated_last_name });
-      res.sendStatus(200);
+      return res.sendStatus(200);
     } catch (err) {
       res.sendStatus(404);
     }
