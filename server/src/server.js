@@ -1,0 +1,20 @@
+const express = require('express')
+const app = express();
+const cors = require('cors');
+
+
+const employeesAPI = require("../controllers/employees");
+const reviewsAPI = require("../controllers/reviews");
+const feedbackAPI = require("../controllers/feedback");
+
+const setupServer = () => {
+  app.use(express.json());
+  app.use(cors())
+  app.use("/api/employees", employeesAPI);
+  app.use("/api/reviews", reviewsAPI);
+  app.use("/api/feedback", feedbackAPI);
+
+  return app;
+};
+
+module.exports = { setupServer };

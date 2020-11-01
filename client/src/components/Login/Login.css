@@ -1,0 +1,36 @@
+.sign-in-button{
+  padding-right: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.sign-in-button:hover{
+ background-color: rgb(229, 191, 191);
+ border-width: 2px;
+ border-style: dashed;
+ border-color: rgb(226, 110, 110);
+ border-radius: 4px;
+}
+
+.employee-sign-in-button{
+  cursor: pointer;
+  background-color:rgb(219, 217, 217);
+  height: 51px;
+  width: 300px;
+  border: 1px; 
+  padding: 13px 0 13px 0;
+  margin-top: 10px;
+  border-radius: 10px;
+  border-color: black;
+}
+
+.employee-sign-in-button:hover{
+  cursor: pointer;
+  background-color:#00B9F5;
+  height: 51px;
+  width: 300px;
+  border: 1px; 
+  padding: 13px 0 13px 0;
+  margin-top: 10px;
+  border-radius: 10px;
+}
