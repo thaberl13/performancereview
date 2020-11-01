@@ -25,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "mocha server/test/EmployeesAPI.js",
+    "test": "mocha server/test/ ",
     "eject": "react-scripts eject",
     "dev": "nodemon ./server/src/index.js",
     "makeMigration": "knex migrate:make",

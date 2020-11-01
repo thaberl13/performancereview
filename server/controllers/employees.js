@@ -11,7 +11,6 @@ router.get("/test", async (req, res) => {
 
 //GET all employees in employees table
 router.get("/", async (req, res) => {
-  console.log("yes");
   //query to select all employees in database
   const allEmployees = await db.select("*").table("employees");
 
