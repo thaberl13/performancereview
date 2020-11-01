@@ -1,8 +1,8 @@
 # Getting Started
-##Admin View
+## Admin View
 ![AdminProfilegif](https://user-images.githubusercontent.com/63279134/97817718-6ef98e00-1ce1-11eb-9115-bec03e12e8aa.gif)
 
-##Employee View
+## Employee View
 ![EmployeeProfilegif](https://user-images.githubusercontent.com/63279134/97817742-918ba700-1ce1-11eb-8abb-95bf91cc19a6.gif)
 
 1) Clone this repository.
