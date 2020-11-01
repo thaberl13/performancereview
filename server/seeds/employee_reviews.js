@@ -1,4 +1,4 @@
-
+//seed files for user review Dummy Data
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('reviews').del()

@@ -1,3 +1,4 @@
+//Migration/Schema file for employee table
 exports.up = function (knex) {
   return knex.schema.dropTableIfExists("feedback").dropTableIfExists('reviews').dropTableIfExists('employees').then(() => {
     return knex.schema.createTable("employees", (table) => {

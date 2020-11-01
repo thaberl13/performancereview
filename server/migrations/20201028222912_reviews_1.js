@@ -1,3 +1,4 @@
+//Migration/schema file for reviews table
 exports.up = function (knex) {
   return knex.schema.dropTableIfExists("reviews").then(() => {
     return knex.schema.createTable("reviews", (table) => {

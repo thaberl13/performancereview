@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+//import Employee Context from useContext File to set employees to variable after fetch
 import { EmployeesContext } from "../useContext/EmployeesContext.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -6,29 +7,32 @@ import "./Profile.css";
 import axios from "axios";
 
 export default function Profile() {
+  //EmployeeContext variable
   const { employees, setEmployees } = useContext(EmployeesContext);
+  //variable/react hook used to set given employees review
   const [employeeReview, setEmployeeReview] = useState("");
+  //variable/react hook set selected employee to send performance review to upon click
   const [selectedEmployee, setSelectedEmployee] = useState("");
+  //variable/react hook set employee review id upon selection to post to database
   const [employeeReviewId, setEmployeeReviewId] = useState("");
 
+  //fetch employees upon initial render
   useEffect(() => {
     async function fetchEmployees() {
       const res = await axios.get("http://localhost:4000/api/employees");
-      console.log(res.data);
       setEmployees(res.data);
     }
     fetchEmployees();
   }, []);
-
+//fetch user reviews up selection 
   async function reviewFetch() {
-    console.log(selectedEmployee);
     const res = await axios.get(
       `http://localhost:4000/api/reviews/${selectedEmployee}`
     );
-    console.log(res.data[0].text);
+    //set employee review text
     setEmployeeReview(res.data[0]);
+    //set employee review Id to post to database
     setEmployeeReviewId(res.data[0].id);
-    console.log(employeeReview);
   }
 
   return (
@@ -44,6 +48,7 @@ export default function Profile() {
         />
         <h2>Performance Review</h2>
         <h3>Performance Review Feedback:</h3>
+        {/* on submit, post new performance review to database */}
         <form
           onSubmit={async (e) => {
             await axios.post("", {
@@ -53,15 +58,16 @@ export default function Profile() {
             });
           }}
         >
+          {/* drop down select to set selected employee upon changing */}
           <select
             name="employee"
             placeholder="select"
             onChange={(e) => {
-              console.log(e.target.value);
               setSelectedEmployee(e.target.value);
             }}
             className="employee-select"
           >
+            {/* if employees have been fetched, display them in dropdown */}
             {employees ? (
               employees.map((employee, index) => {
                 return (
@@ -75,12 +81,14 @@ export default function Profile() {
             )}
             <input type="submit" />
           </select>
+          {/* button to confirm which employees review is to be selected and fetched */}
           <div
             className="select-employee-submit"
             type="button"
             value="Select"
             onClick={reviewFetch}
           >
+            {/* icon for clickable employee check box */}
             <FontAwesomeIcon
               className="clip-board"
               icon={faCheck}
@@ -88,6 +96,7 @@ export default function Profile() {
               color="darkslategrey"
             />
           </div>
+          {/* if a review has been selected to display, display review */}
           {employeeReview ? (
             <p
               name="employee_review"

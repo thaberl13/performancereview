@@ -6,6 +6,7 @@ chai.should();
 const sinon = require("sinon");
 const server = setupServer();
 
+//Tests for Employee Requests
 describe("Employees API server", () => {
   let request;
   beforeEach(() => {
@@ -24,13 +25,13 @@ describe("Employees API server", () => {
       is_admin: false,
     };
     const res = await request.post("/api/employees").send(newEmployee);
-    res.should.have.status(200)
+    res.should.have.status(200);
   });
 
   it("should delete a given employee from database", async () => {
     const res = await request.delete("/api/employees/56");
-    res.should.have.status(202)
-  })
+    res.should.have.status(202);
+  });
 
   it("should change an employee's first name", async () => {
     const newName = { first_name: "Tanner" };
@@ -38,11 +39,9 @@ describe("Employees API server", () => {
     res.should.have.status(200);
   });
 
-
   it("should change an employee's admin status", async () => {
     const is_admin = { is_admin: "true" };
     const res = await request.patch("/api/employees/45").send(is_admin);
     res.should.have.status(200);
   });
-    
 });

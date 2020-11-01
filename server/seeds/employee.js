@@ -1,4 +1,4 @@
-
+//seed file for employee names dummy data
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('employees').del()

@@ -6,6 +6,7 @@ chai.should();
 const sinon = require("sinon");
 const server = setupServer();
 
+//Tests for Peformance Review Requests
 describe("Performance Request API server", () => {
   let request;
   beforeEach(() => {
@@ -26,5 +27,4 @@ describe("Performance Request API server", () => {
     const res = await request.get("/api/reviews/45");
     res.should.have.status(200);
   });
-
 });

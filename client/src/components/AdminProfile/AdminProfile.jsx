@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./AdminProfile.css";
+//import icons from Font Awesome
 import {
   faClipboard,
   faKey,
@@ -12,12 +13,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { EmployeesContext } from "../useContext/EmployeesContext.jsx";
 
 export default function AdminProfile() {
+  //useContext for employees variable for fetching data from API
   const { employees, setEmployees } = useContext(EmployeesContext);
 
+  //Fetch Employee data once upon intial render
   useEffect(() => {
     async function fetchEmployees() {
       const res = await axios.get("http://localhost:4000/api/employees");
-      console.log(res.data);
       setEmployees(res.data);
     }
     fetchEmployees();
@@ -27,6 +29,7 @@ export default function AdminProfile() {
   return (
     <div id="administrator-performance-form">
       <h1 className="header">Administrator</h1>
+      {/* post new performance review to database */}
       <form
         onSubmit={async (e) => {
           await axios.post("http://localhost:4000/api/reviews", {
@@ -36,6 +39,7 @@ export default function AdminProfile() {
         }}
         className="profile-form"
       >
+        {/* Font awesome icons and styles */}
         <FontAwesomeIcon
           className="user-img-preview"
           icon={faChartLine}
@@ -52,6 +56,7 @@ export default function AdminProfile() {
           Employee Performance Review:
         </h3>
         <select name="employee" className="employee-select">
+          {/* if employees have been fetched from database map through to display in dropdown list*/}
           {employees ? (
             employees.map((employee, index) => {
               return (
@@ -74,6 +79,7 @@ export default function AdminProfile() {
           Employee to give feedback on performance review:
         </h3>
         <select className="employee-select">
+          {/* select employee to assign performance review feedback to  */}
           {employees ? (
             employees.map((employee, index) => {
               return (

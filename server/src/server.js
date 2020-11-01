@@ -16,4 +16,5 @@ const setupServer = () => {
   return app;
 };
 
+//export the setup for Server to use in controller files
 module.exports = { setupServer };

@@ -1,3 +1,4 @@
+//migration schema file for feedback table
 exports.up = function (knex) {
   return knex.schema.dropTableIfExists("feedback").then(() => {
     return knex.schema.createTable("feedback", (table) => {
