@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { EmployeesContext } from "../useContext/EmployeesContext.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserCircle,
@@ -8,20 +9,22 @@ import "./Profile.css";
 import axios from "axios";
 
 export default function Profile() {
-  const [employeesToReview, setEmployeesToReview] = useState([]);
+  const { employees, setEmployees } = useContext(EmployeesContext);
+  // const [employeesToReview, setEmployeesToReview] = useState([]);
   const [employeeReview, setEmployeeReview] = useState([]);
-  const [selectedEmployee, setSelectedEmployee] = useState(20);
+  const [selectedEmployee, setSelectedEmployee] = useState("");
 
   useEffect(() => {
     async function fetchEmployees() {
       const res = await axios.get("http://localhost:4000/api/employees");
       console.log(res.data);
-      setEmployeesToReview(res.data);
+      setEmployees(res.data);
     }
     fetchEmployees();
   }, []);
 
   async function reviewFetch() {
+    console.log(selectedEmployee)
     const res = await axios.get(
       `http://localhost:4000/api/reviews/${selectedEmployee}`
     );
@@ -52,13 +55,15 @@ export default function Profile() {
           }}
           className="employee-select"
         >
-          {employeesToReview.map((employee, index) => {
+          {employees ? employees.map((employee, index)=>{
             return (
-              <option value={employeesToReview[index].id}>
+              <option value={employee.first_name}>
                 {employee.first_name} {employee.last_name}
               </option>
             );
-          })}
+          }) : <option value={"Select Employee"}>
+          {"Select Employee"}
+        </option>}
         <input type="submit"/>
         </select>
         <textarea

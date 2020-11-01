@@ -51,8 +51,8 @@ export default function Login() {
           >
           <h2>Please Sign In</h2>
           <div>
-            <button　className="employee-sign-in-button" onClick={employeeHandler}>Employee</button> <br/>
-            <button className="employee-sign-in-button" onClick={adminHandler}>Admin</button>
+            <button className="employee-sign-in-button" onClick={adminHandler}>Admin</button> <br/>
+            <button　className="employee-sign-in-button" onClick={employeeHandler}>Employee</button> 
           </div>
         </Modal>
       </div>

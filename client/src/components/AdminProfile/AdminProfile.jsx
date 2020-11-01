@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./AdminProfile.css";
 import {
@@ -8,9 +8,11 @@ import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { EmployeesContext } from "../useContext/EmployeesContext.jsx";
 
 export default function AdminProfile() {
-  const [employees, setEmployees] = useState([]);
+  const { employees, setEmployees } = useContext(EmployeesContext);
+  
 
   useEffect(() => {
     async function fetchEmployees() {
@@ -39,13 +41,15 @@ export default function AdminProfile() {
           Employee Performance Review: 
         </h3>
         <select className="employee-select">
-          {employees.map((employee, index) => {
+          {employees ? employees.map((employee, index)=>{
             return (
               <option value={employee.first_name}>
                 {employee.first_name} {employee.last_name}
               </option>
             );
-          })}
+          }) : <option value={"Select Employee"}>
+          {"Select Employee"}
+        </option>}
         </select>
         
         <h3 className="form-header">
@@ -69,16 +73,15 @@ export default function AdminProfile() {
           Employee to give feedback on performance review: 
         </h3>
         <select className="employee-select">
-          {employees.map((employee, index) => {
-            {
-              console.log(employee.first_name);
-            }
+        {employees ? employees.map((employee, index)=>{
             return (
               <option value={employee.first_name}>
                 {employee.first_name} {employee.last_name}
               </option>
             );
-          })}
+          }) :  <option value={"Select Employee"}>
+          {"Select Employee"}
+        </option>}
         </select>
         
         <h3 className="form-header">
