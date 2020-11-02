@@ -2,11 +2,6 @@ const express = require("express");
 const router = express.Router();
 const db = require("../src/knex.js");
 
-//test connection to database
-router.get("/test", async (req, res) => {
- return res.send("feedback working");
-});
-
 //POST new feedback into feedback table
 router.post("/", async (req, res) => {
   try {

@@ -2,11 +2,6 @@ const express = require("express");
 const router = express.Router();
 const db = require("../src/knex.js");
 
-//test connection to database
-router.get("/test", async (req, res) => {
-  return res.send("reviews working");
-});
-
 //POST a new employee review to reviews table
 router.post("/", async (req, res) => {
   try {
@@ -25,8 +20,7 @@ router.post("/", async (req, res) => {
       .table("reviews");
     return res.sendStatus(200);
   } catch (err) {
-    //send 404 status if error
-   res.sendStatus(404);
+   res.sendStatus(400);
   }
 });
 
@@ -35,6 +29,9 @@ router.get("/:id", async (req, res) => {
   const employee_id = req.params.id;
   //select employees reviews from table
   let reviews = await db.select("text", "id").table("reviews").where({ employee_id });
+  if(reviews.length === 0) {
+    return res.sendStatus(404)
+  }
   return res.send(reviews);
 });
 

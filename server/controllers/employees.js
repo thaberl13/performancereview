@@ -4,11 +4,6 @@ const router = express.Router();
 //Connection to database through knex
 const db = require("../src/knex.js");
 
-//test connection to database
-router.get("/test", async (req, res) => {
-  res.send("working");
-});
-
 //GET all employees in employees table
 router.get("/", async (req, res) => {
   //query to select all employees in database
@@ -31,8 +26,8 @@ router.post("/", async (req, res) => {
       .table("employees");
     return res.sendStatus(200);
   } catch (err) {
-    //send 404 status if error
-    res.sendStatus(404);
+    //send 400 status if error
+    res.sendStatus(400);
   }
 });
 
@@ -47,7 +42,7 @@ router.delete("/:id", async (req, res) => {
       .where({ id })
       .del();
     //send 202 status if accepted
-    return res.sendStatus(202);
+    return res.sendStatus(200);
   } catch (err) {
     //send 404 status if user is not found
     res.sendStatus(404);
@@ -89,7 +84,7 @@ router.patch("/:id", async (req, res) => {
       return res.sendStatus(404);
     }
   }
-  //if last name needs to be updated, select by last_name and then update
+  //if last name needs to be updated, select by id and then update
   if (updated_last_name) {
     try {
       const employee = await db
