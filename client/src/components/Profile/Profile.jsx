@@ -21,8 +21,8 @@ export default function Profile() {
   useEffect(() => {
     async function fetchEmployees() {
       const res = await axios.get(
-        process.env.REACT_APP_BACKEND_URL ||
-          `http://localhost:4000/api/employees`
+        `http://localhost:4000/api/employees` ||
+          `${process.env.REACT_APP_BACKEND_URL}/api/employees`
       );
       setEmployees(res.data);
     }
@@ -31,8 +31,8 @@ export default function Profile() {
   //fetch user reviews up selection
   async function reviewFetch() {
     const res = await axios.get(
-      process.env.REACT_APP_BACKEND_URL ||
-        `http://localhost:4000/api/reviews/${selectedEmployee}`
+      `http://localhost:4000/api/reviews/${selectedEmployee}` ||
+        `${process.env.REACT_APP_BACKEND_URL}/api/reviews/${selectedEmployee}`
     );
     //set employee review text
     setEmployeeReview(res.data[0]);
@@ -56,8 +56,8 @@ export default function Profile() {
         {/* on submit, post new performance review to database */}
         <form
           onSubmit={async (e) => {
-            await axios.post("", {
-              employee_id: e.target.employee.value,
+            await axios.post("http://localhost:4000/api/feedback" || `${process.env.REACT_APP_BACKEND_URL}/api/feedback`, {
+              employee_id: parseInt(e.target.employee.value),
               review_id: employeeReviewId,
               comment: e.target.comment.value,
             });

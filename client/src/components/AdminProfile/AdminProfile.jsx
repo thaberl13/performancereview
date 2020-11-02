@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { EmployeesContext } from "../useContext/EmployeesContext.jsx";
-require('dotenv').config()
+require("dotenv").config();
 
 export default function AdminProfile() {
   //useContext for employees variable for fetching data from API
@@ -19,12 +19,14 @@ export default function AdminProfile() {
   //Fetch Employee data once upon intial render
   useEffect(() => {
     async function fetchEmployees() {
-      const res = await axios.get( process.env.REACT_APP_BACKEND_URL||`http://localhost:4000/api/employees`);
+      const res = await axios.get(
+        `http://localhost:4000/api/employees` ||
+          `${process.env.REACT_APP_BACKEND_URL}/api/employees`
+      );
       setEmployees(res.data);
     }
     fetchEmployees();
   }, []);
-
 
   return (
     <div id="administrator-performance-form">
@@ -32,10 +34,14 @@ export default function AdminProfile() {
       {/* post new performance review to database */}
       <form
         onSubmit={async (e) => {
-          await axios.post(process.env.REACT_APP_BACKEND_URL||`http://localhost:4000/api/reviews`, {
-            last_name: e.target.employee.value,
-            text: e.target.text.value,
-          });
+          await axios.post(
+            `http://localhost:4000/api/reviews` ||
+              `${process.env.REACT_APP_BACKEND_URL}/api/reviews`,
+            {
+              last_name: e.target.employee.value,
+              text: e.target.text.value,
+            }
+          );
         }}
         className="profile-form"
       >
@@ -60,7 +66,11 @@ export default function AdminProfile() {
           {employees ? (
             employees.map((employee, index) => {
               return (
-                <option key="employeeName" name="last_name" value={employee.last_name}>
+                <option
+                  key="employeeName"
+                  name="last_name"
+                  value={employee.last_name}
+                >
                   {employee.first_name} {employee.last_name}
                 </option>
               );
@@ -83,7 +93,11 @@ export default function AdminProfile() {
           {employees ? (
             employees.map((employee, index) => {
               return (
-                <option key="employeeName" name="other_employee" value={employee.first_name}>
+                <option
+                  key="employeeName"
+                  name="other_employee"
+                  value={employee.first_name}
+                >
                   {employee.first_name} {employee.last_name}
                 </option>
               );
