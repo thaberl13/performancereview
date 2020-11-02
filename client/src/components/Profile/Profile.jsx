@@ -56,11 +56,15 @@ export default function Profile() {
         {/* on submit, post new performance review to database */}
         <form
           onSubmit={async (e) => {
-            await axios.post("http://localhost:4000/api/feedback" || `${process.env.REACT_APP_BACKEND_URL}/api/feedback`, {
-              employee_id: parseInt(e.target.employee.value),
-              review_id: employeeReviewId,
-              comment: e.target.comment.value,
-            });
+            await axios.post(
+              "http://localhost:4000/api/feedback" ||
+                `${process.env.REACT_APP_BACKEND_URL}/api/feedback`,
+              {
+                employee_id: parseInt(e.target.employee.value),
+                review_id: employeeReviewId,
+                comment: e.target.comment.value,
+              }
+            );
           }}
         >
           {/* drop down select to set selected employee upon changing */}
