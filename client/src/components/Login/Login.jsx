@@ -30,15 +30,15 @@ export default function Login() {
     <>
       <div>
         {/* sign in display in  */}
-        <h3 onClick={loginHandler} className="sign-in-button">
-          Sign In
+        <a onClick={loginHandler} className="sign-in-button">
           <FontAwesomeIcon
             className="clip-board"
             icon={faSignInAlt}
             size="2x"
             color="darkslategrey"
-          />
-        </h3>
+            />
+        </a>
+            <h3>Sign In </h3>
         {/* displays Sign in Modal */}
         <Modal
           open={isOpen}

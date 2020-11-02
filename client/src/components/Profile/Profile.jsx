@@ -10,11 +10,11 @@ export default function Profile() {
   //EmployeeContext variable
   const { employees, setEmployees } = useContext(EmployeesContext);
   //variable/react hook used to set given employees review
-  const [employeeReview, setEmployeeReview] = useState("");
+  const [employeeReview, setEmployeeReview] = useState(undefined);
   //variable/react hook set selected employee to send performance review to upon click
-  const [selectedEmployee, setSelectedEmployee] = useState("");
+  const [selectedEmployee, setSelectedEmployee] = useState(undefined);
   //variable/react hook set employee review id upon selection to post to database
-  const [employeeReviewId, setEmployeeReviewId] = useState("");
+  const [employeeReviewId, setEmployeeReviewId] = useState(undefined);
 
   //fetch employees upon initial render
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function Profile() {
             {employees ? (
               employees.map((employee, index) => {
                 return (
-                  <option name="employee" value={employee.id}>
+                  <option key="employeeName" name="employee" value={employee.id}>
                     {employee.first_name} {employee.last_name}
                   </option>
                 );
@@ -82,9 +82,8 @@ export default function Profile() {
             <input type="submit" />
           </select>
           {/* button to confirm which employees review is to be selected and fetched */}
-          <div
+          <button
             className="select-employee-submit"
-            type="button"
             value="Select"
             onClick={reviewFetch}
           >
@@ -95,7 +94,7 @@ export default function Profile() {
               size="lg"
               color="darkslategrey"
             />
-          </div>
+          </button>
           {/* if a review has been selected to display, display review */}
           {employeeReview ? (
             <p

@@ -60,7 +60,7 @@ export default function AdminProfile() {
           {employees ? (
             employees.map((employee, index) => {
               return (
-                <option name="last_name" value={employee.last_name}>
+                <option key="employeeName" name="last_name" value={employee.last_name}>
                   {employee.first_name} {employee.last_name}
                 </option>
               );
@@ -83,7 +83,7 @@ export default function AdminProfile() {
           {employees ? (
             employees.map((employee, index) => {
               return (
-                <option name="other_employee" value={employee.first_name}>
+                <option key="employeeName" name="other_employee" value={employee.first_name}>
                   {employee.first_name} {employee.last_name}
                 </option>
               );
