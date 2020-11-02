@@ -92,7 +92,6 @@ export default function Profile() {
           </select>
           {/* button to confirm which employees review is to be selected and fetched */}
           <a
-            href="http://localhost:3000"
             className="select-employee-submit"
             value="Select"
             onClick={reviewFetch}
