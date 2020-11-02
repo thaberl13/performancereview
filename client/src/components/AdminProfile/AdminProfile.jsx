@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import "./AdminProfile.css";
 //import icons from Font Awesome
 import {
   faClipboard,
-  faKey,
   faCheck,
   faPen,
   faChartLine,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { EmployeesContext } from "../useContext/EmployeesContext.jsx";
+require('dotenv').config()
 
 export default function AdminProfile() {
   //useContext for employees variable for fetching data from API
@@ -19,7 +19,7 @@ export default function AdminProfile() {
   //Fetch Employee data once upon intial render
   useEffect(() => {
     async function fetchEmployees() {
-      const res = await axios.get("http://localhost:4000/api/employees");
+      const res = await axios.get( process.env.REACT_APP_BACKEND_URL||`http://localhost:4000/api/employees`);
       setEmployees(res.data);
     }
     fetchEmployees();
@@ -32,7 +32,7 @@ export default function AdminProfile() {
       {/* post new performance review to database */}
       <form
         onSubmit={async (e) => {
-          await axios.post("http://localhost:4000/api/reviews", {
+          await axios.post(process.env.REACT_APP_BACKEND_URL||`http://localhost:4000/api/reviews`, {
             last_name: e.target.employee.value,
             text: e.target.text.value,
           });

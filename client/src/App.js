@@ -1,11 +1,10 @@
 import "./App.css";
 import { useState } from "react";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Login from "./components/Login/Login.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import AdminProfile from "./components/AdminProfile/AdminProfile";
-import Modal from "./components/Modal/Modal";
 import { EmployeesContext } from "./components/useContext/EmployeesContext";
 function App() {
   const [employees, setEmployees] = useState(null);
@@ -15,6 +14,7 @@ function App() {
       <img
         id="pay-pay-header-logo"
         src="https://developer.paypay.ne.jp/static/img/pay_pay_logo@2x.6fe31c85.svg"
+        alt="pay pay logo"
       />
       <NavBar />
       <h1>PayPay Performance Reviews</h1>

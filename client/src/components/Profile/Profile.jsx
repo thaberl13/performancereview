@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faCheck } from "@fortawesome/free-solid-svg-icons";
 import "./Profile.css";
 import axios from "axios";
+require('dotenv').config()
 
 export default function Profile() {
   //EmployeeContext variable
@@ -19,15 +20,19 @@ export default function Profile() {
   //fetch employees upon initial render
   useEffect(() => {
     async function fetchEmployees() {
-      const res = await axios.get("http://localhost:4000/api/employees");
+      const res = await axios.get(
+        process.env.REACT_APP_BACKEND_URL ||
+          `http://localhost:4000/api/employees`
+      );
       setEmployees(res.data);
     }
     fetchEmployees();
   }, []);
-//fetch user reviews up selection 
+  //fetch user reviews up selection
   async function reviewFetch() {
     const res = await axios.get(
-      `http://localhost:4000/api/reviews/${selectedEmployee}`
+      process.env.REACT_APP_BACKEND_URL ||
+        `http://localhost:4000/api/reviews/${selectedEmployee}`
     );
     //set employee review text
     setEmployeeReview(res.data[0]);
@@ -71,7 +76,11 @@ export default function Profile() {
             {employees ? (
               employees.map((employee, index) => {
                 return (
-                  <option key="employeeName" name="employee" value={employee.id}>
+                  <option
+                    key="employeeName"
+                    name="employee"
+                    value={employee.id}
+                  >
                     {employee.first_name} {employee.last_name}
                   </option>
                 );
@@ -82,7 +91,7 @@ export default function Profile() {
             <input type="submit" />
           </select>
           {/* button to confirm which employees review is to be selected and fetched */}
-          <button
+          <a
             className="select-employee-submit"
             value="Select"
             onClick={reviewFetch}
@@ -94,7 +103,7 @@ export default function Profile() {
               size="lg"
               color="darkslategrey"
             />
-          </button>
+          </a>
           {/* if a review has been selected to display, display review */}
           {employeeReview ? (
             <p
