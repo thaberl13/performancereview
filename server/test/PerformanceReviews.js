@@ -3,7 +3,6 @@ const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 const { setupServer } = require("../src/server.js");
 chai.should();
-const sinon = require("sinon");
 const server = setupServer();
 
 //Tests for Peformance Review Requests
@@ -25,6 +24,6 @@ describe("Performance Request API server", () => {
 
   it("should be able to get an Employee's Review by employee ID", async () => {
     const res = await request.get("/api/reviews/45");
-    res.should.have.status(200);
+    res.should.have.be.a("object");
   });
 });

@@ -13,6 +13,20 @@ router.get("/", async (req, res) => {
   return res.send(allEmployees);
 });
 
+//GET employee by id
+router.get("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const employee = await db.select("*").table("employees").where({ id });
+    if (employee.length === 0) {
+      return res.sendStatus(400);
+    }
+    return res.send(employee);
+  } catch (err) {
+    return res.sendStatus(500);
+  }
+});
+
 //POST a new employee to the employee table
 router.post("/", async (req, res) => {
   try {
@@ -27,7 +41,7 @@ router.post("/", async (req, res) => {
     return res.sendStatus(200);
   } catch (err) {
     //send 400 status if error
-    res.sendStatus(400);
+    return res.sendStatus(400);
   }
 });
 

@@ -3,7 +3,6 @@ const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 const { setupServer } = require("../src/server.js");
 chai.should();
-const sinon = require("sinon");
 const server = setupServer();
 
 //Tests for Feedback requests
