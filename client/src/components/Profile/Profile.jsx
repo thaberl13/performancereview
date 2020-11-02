@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faCheck } from "@fortawesome/free-solid-svg-icons";
 import "./Profile.css";
 import axios from "axios";
-require('dotenv').config()
+require("dotenv").config();
 
 export default function Profile() {
   //EmployeeContext variable
@@ -92,6 +92,7 @@ export default function Profile() {
           </select>
           {/* button to confirm which employees review is to be selected and fetched */}
           <a
+            href="http://localhost:3000"
             className="select-employee-submit"
             value="Select"
             onClick={reviewFetch}

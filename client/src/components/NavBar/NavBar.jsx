@@ -17,7 +17,7 @@ export default function NavBar() {
   return (
     <div id="nav-bar">
       {/* send a user to the home page when the click home icon */}
-      <a id="home-button" onClick={homeHandler}>
+      <a id="home-button" href="http://localhost:3000/" onClick={homeHandler}>
         <FontAwesomeIcon icon={faHome} size="2x" color="darkslategrey" />
       </a>
       <Login />

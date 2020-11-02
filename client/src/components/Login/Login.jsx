@@ -30,7 +30,7 @@ export default function Login() {
     <>
       <div>
         {/* sign in display in  */}
-        <a onClick={loginHandler} className="sign-in-button">
+        <a onClick={loginHandler} href="/adminprofile" className="sign-in-button">
           <FontAwesomeIcon
             className="clip-board"
             icon={faSignInAlt}
