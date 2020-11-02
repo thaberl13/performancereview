@@ -68,7 +68,7 @@ router.patch("/:id", async (req, res) => {
         .update({ is_admin: req.body.is_admin });
       return res.sendStatus(200);
     } catch (err) {
-      return res.sendStatus(404);
+      return res.sendStatus(400);
     }
   }
   //if first_name needs to be updated, select by last name and update first_name
@@ -81,7 +81,7 @@ router.patch("/:id", async (req, res) => {
         .update({ first_name: req.body.first_name });
       return res.sendStatus(200);
     } catch (err) {
-      return res.sendStatus(404);
+      return res.sendStatus(400);
     }
   }
   //if last name needs to be updated, select by id and then update
@@ -94,7 +94,7 @@ router.patch("/:id", async (req, res) => {
         .update({ last_name: req.body.updated_last_name });
       return res.sendStatus(200);
     } catch (err) {
-      res.sendStatus(404);
+      res.sendStatus(400);
     }
   }
 });
