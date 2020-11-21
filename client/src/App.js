@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <h1>PayPay Performance Reviews</h1>
+      <h1>Performance Reviews</h1>
       <EmployeesContext.Provider
         value={{ employees, setEmployees }}
       >
