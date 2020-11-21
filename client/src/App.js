@@ -11,11 +11,6 @@ function App() {
 
   return (
     <div className="App">
-      <img
-        id="pay-pay-header-logo"
-        src="https://developer.paypay.ne.jp/static/img/pay_pay_logo@2x.6fe31c85.svg"
-        alt="pay pay logo"
-      />
       <NavBar />
       <h1>PayPay Performance Reviews</h1>
       <EmployeesContext.Provider

@@ -1,38 +1,57 @@
-# Full Stack Developer Challenge
-This is an interview challengs. Please feel free to fork. Pull Requests will be ignored.
+# Getting Started
+## Admin View
+![AdminProfilegif](https://user-images.githubusercontent.com/63279134/97817718-6ef98e00-1ce1-11eb-9115-bec03e12e8aa.gif)
 
-## Requirements
-Design a web application that allows employees to submit feedback toward each other's performance review.
+## Employee View
+![EmployeeProfilegif](https://user-images.githubusercontent.com/63279134/97817742-918ba700-1ce1-11eb-8abb-95bf91cc19a6.gif)
 
-*Partial solutions are acceptable.*  It is not necessary to submit a complete solution that implements every requirement.
+1) Clone this repository.
+```
+git clone https://github.com/thaberl13/FullStackEngineerChallenge
+```
 
-### Admin view
-* Add/remove/update/view employees
-* Add/update/view performance reviews
-* Assign employees to participate in another employee's performance review
+2) Install dependencies.
+```
+cd server
+yarn
+```
+```
+cd ../client
+yarn
+cd ..
+```
+3) Create local database
+```
+psql
+CREATE DATABASE paypay;
+```
+4) Run migrations and seed.
+```
+cd server
+yarn migrate
+yarn seed
+```
+5) Start backend and frontend server.
+```
+yarn start
+cd ..
+cd client
+yarn start
+```
+6) To Run API Tests
 
-### Employee view
-* List of performance reviews requiring feedback
-* Submit feedback
+```
+cd server
+yarn dev
+yarn test
+```
 
-## Challenge Scope
-* High level description of design and technologies used
-* Server side API (using a programming language and/or framework of your choice)
-  * Implementation of at least 3 API calls
-  * Most full stack web developers at PayPay currently use Java, Ruby on Rails, or Node.js on the server(with MySQL for the database), but feel free to use other tech if you prefer
-* Web app
-  * Implementation of 2-5 web pages using a modern web framework (e.g. React or Angular) that talks to server side
-    * This should integrate with your API, but it's fine to use static responses for some of it 
-* Document all assumptions made
-* Complete solutions aren't required, but what you do submit needs to run.
+***
+### Technologies
+- React
+- Node/Express
+- Knex
+- Postgres
+- Mocha Testing
 
-## How to complete this challenge
-* Fork this repo in github
-* Complete the design and code as defined to the best of your abilities
-* Place notes in your code to help with clarity where appropriate. Make it readable enough to present to the PayPay interview team
-* Complete your work in your own github repo and send the results to us and/or present them during your interview
-
-## What are we looking for? What does this prove?
-* Assumptions you make given limited requirements
-* Technology and design choices
-* Identify areas of your strengths
+***
