@@ -1,9 +1,9 @@
 # Getting Started
 ## Admin View
-![AdminProfilegif](https://user-images.githubusercontent.com/63279134/97817718-6ef98e00-1ce1-11eb-9115-bec03e12e8aa.gif)
+![performance-review-gif](https://user-images.githubusercontent.com/63279134/99880621-e4f57300-2c57-11eb-8497-a634cafb716e.gif)
 
 ## Employee View
-![EmployeeProfilegif](https://user-images.githubusercontent.com/63279134/97817742-918ba700-1ce1-11eb-8abb-95bf91cc19a6.gif)
+![performance-review-employee-gif](https://user-images.githubusercontent.com/63279134/99880641-0bb3a980-2c58-11eb-9083-8e50d7e66735.gif)
 
 1) Clone this repository.
 ```
