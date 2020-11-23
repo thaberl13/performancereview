@@ -6,7 +6,8 @@ module.exports = {
     connection: {
       host: "localhost",
       database: "paypay",
-      port: "5432",
+      port: "5432", 
+      
     },
     migrations: {
       directory: "./server/migrations/",
