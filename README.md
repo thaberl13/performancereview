@@ -1,8 +1,8 @@
 # Getting Started
 
-### Full Stack Application built using the TDD(test driven development) methodology
+### • Full Stack Application built using the TDD(test driven development) methodology
 
-### Built using React, Node, Express, Knex, PostgreSQL, + Mocha and Chai testing suites
+### • Built using React, Node, Express, Knex, PostgreSQL, + Mocha and Chai testing suites
 
 ## Admin View
 ![performance-review-gif](https://user-images.githubusercontent.com/63279134/99880621-e4f57300-2c57-11eb-8497-a634cafb716e.gif)
