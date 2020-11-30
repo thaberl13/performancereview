@@ -49,7 +49,8 @@ yarn test
 ***
 ### Technologies
 - React
-- Node/Express
+- Node
+-Express
 - Knex
 - Postgres
 - Mocha Testing
